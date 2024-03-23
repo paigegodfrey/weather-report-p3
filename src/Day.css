@@ -1,23 +1,32 @@
 .day {
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
 
-    border-bottom: 1px solid #eee;
-  }
-
-.weather {
-  font-size: 60px;
+.weather-icon {
+  width: 80px;
 
 }
 
 .temperature {
-  font-size: 30px;
+  font-size: 20px;
+  font-weight: normal;
+  margin: 5px 0;
+}
+
+.weather-description {
+  font-size: 20px;
+  color: #666; 
 
 }
 
 .cold {
-  color: #00f;
+  color: #3498db;
 }
 
 .hot {
-  color: #f00;
+  color: #e74c3c;
 }
