@@ -1,14 +1,16 @@
-import React from 'react'
-import Day from './Day'
-import './Forecast.css'
+import React from 'react';
+import Day from './Day';
+import './Forecast.css';
 
-import { parseForecastData } from './utils/utils'
+import { parseForecastData } from './utils/utils';
 
-function Forecast({ data }) {
+function Forecast({ city, data }) {
 
-  const parsedData = parseForecastData(data);
+  const parsedData = data ? parseForecastData(data) : [];
 
   return (
+  <>
+    <p>📍 Location: {city ? city : ""}</p>
     <div className="forecast-container">
       {parsedData.map(day => (
         <div className="forecast-card" key={day.date}>
@@ -16,8 +18,10 @@ function Forecast({ data }) {
         </div>
       ))}
     </div>
+  </>
   );
+
 }
 
-export default Forecast
+export default Forecast;
 

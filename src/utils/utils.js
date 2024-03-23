@@ -7,9 +7,9 @@ const formatDate = (dateString) => {
   return new Date(dateString).toLocaleDateString(undefined, options);
 };
 
-// Parse the data for use in components, including the weather icon
+// Parse the data for use in components, including the weather icon, filtering for entries at 18:00:00
 const parseForecastData = (forecastData) => {
-  return forecastData.list.map(data => ({
+  return forecastData.list.filter(data => data.dt_txt.endsWith("18:00:00")).map(data => ({
     date: formatDate(data.dt_txt),
     temperature: kelvinToFahrenheit(data.main.temp),
     weather: data.weather[0].main,
@@ -17,5 +17,6 @@ const parseForecastData = (forecastData) => {
     icon: data.weather[0].icon // Added the weather icon
   }));
 };
+
 
 export { kelvinToFahrenheit, formatDate, parseForecastData };
