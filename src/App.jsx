@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css'
 import SearchForm from './SearchForm'
 import Forecast from './Forecast'
@@ -8,18 +8,21 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
 
 
+  // save your API key in .env folder
+  // do NOT commit .env folder to git (include in .gitignore file)
   const fetchData = async () => {
-    const apiKey = process.env.REACT_APP_API_KEY
+    const apiKey = import.meta.env.VITE_APP_API_KEY
     const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`)
     const data = await response.json()
     setWeatherData(data)
   };
 
   useEffect(() => {
-    if (city !== '') {
-      fetchData();
-    }
+    console.log("weatherData inside useEffect", weatherData);
+    fetchData();
   }, [city]);
+
+  console.log("weatherData outside useEffect", weatherData);
 
   const handleCityChange = (newCity) => {
     setCity(newCity);
@@ -34,4 +37,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
